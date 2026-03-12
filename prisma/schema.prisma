@@ -14,9 +14,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Movie { 
-  id    String  @id @default(auto()) @map("_id") @db.ObjectId
-  title String
+type ImdbRating {
+  rating Float?
+  votes  Int?
+  id     Int?
+}
+
+model Movie {
+  id     String      @id @default(auto()) @map("_id") @db.ObjectId
+  title  String?
+  genres String[]
+  imdb   ImdbRating?
 
   @@map("movies")
 }
