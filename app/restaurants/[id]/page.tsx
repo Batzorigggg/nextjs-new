@@ -12,7 +12,7 @@ export default function Restaurant() {
 
     fetch(`/api/restaurants/${id}`)
       .then((res) => res.json())
-      .then((data) => {
+      .then((data) => { 
         if (!cancelled) setRestaurant(data);
       });
 
