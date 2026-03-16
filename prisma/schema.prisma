@@ -14,17 +14,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-type ImdbRating {
-  rating Float?
-  votes  Int?
-  id     Int?
+type Address {
+  building String?
+  street  String?
+  zipcode     String?
+  coord Float[]
 }
 
-model Movie {
+model Restaurant {
   id     String      @id @default(auto()) @map("_id") @db.ObjectId
-  title  String?
-  genres String[]
-  imdb   ImdbRating?
+  name  String?
+  cuisine String?
+  borough   String?
+  address Address?
 
-  @@map("movies")
+  @@map("restaurants")
 }

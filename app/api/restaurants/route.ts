@@ -10,25 +10,32 @@ export async function GET(request: NextRequest) {
   const where: Record<string, any> = {};
 
   try {
-    const [movies, total] = await Promise.all([
-      prisma.movie.findMany({
+    const [restaurants, total] = await Promise.all([
+      prisma.restaurant.findMany({
         where,
         select: {
           id: true,
-          title: true,
-          genres: true,
-          imdb: true,
+          name: true,
+          cuisine: true,
+          borough: true,
+          address: {
+            select: {
+              building: true,
+              street: true,
+              zipcode: true,
+              coord: true,
+            },
+          },
         },
-        orderBy: { title: "asc" },
         take: limit,
         skip,
       }),
-      prisma.movie.count({ where }),
+      prisma.restaurant.count({ where }),
     ]);
 
-    return NextResponse.json({ movies, total, limit, skip });
+    return NextResponse.json({ restaurants: restaurants, total, limit, skip });
   } catch (err: any) {
-    console.error("GET /api/movies error:", err);
+    console.error("GET /api/restaurants error:", err);
     return NextResponse.json(
       { error: err?.message ?? "Internal server error" },
       { status: 500 },
