@@ -1,5 +1,5 @@
 export type Restaurant = {
-  id: string;
+  _id: string;
   name: string;
   cuisine: string;
   borough: string;

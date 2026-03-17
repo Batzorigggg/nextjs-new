@@ -9,13 +9,6 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <ul className="space-y-4">
-        {restaurants.map((restaurant) => (
-          <li key={restaurant.id} className="p-4 border rounded shadow">
-            <h2 className="text-2xl font-semibold">{restaurant.name}</h2>
-          </li>
-        ))}
-      </ul>
       <Link href="/restaurants">
         <Button>Restaurants</Button>
       </Link>
